@@ -1,0 +1,175 @@
+%general
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[a4paper,top=24mm,bottom=36mm,inner=18mm,outer=18mm]{geometry}
+\usepackage{graphicx}
+\usepackage[english]{babel}
+% \usepackage[automark]{scrlayer-scrpage}
+%font
+\usepackage{libertine}
+%tikz
+\usepackage{tikz}
+\usepackage{tikzpagenodes}
+	\usetikzlibrary{calc}
+%hyperref
+\usepackage{hyperref}
+
+\usepackage[backend=biber,style=authoryear,natbib=true,hyperref=true,style=numeric]{biblatex}
+\addbibresource{references.bib}
+
+\makeatletter
+%--------------------------------------------------------
+
+%UGent colors
+\definecolor{ugentblue}{RGB}{30,100,200}
+\definecolor{ugentyellow}{RGB}{255,210,0}
+
+%--------------------------------------------------------
+
+%extend title bold to math
+%\g@addto@macro\bfseries{\boldmath}
+
+%--------------------------------------------------------
+
+\KOMAoptions{bibliography=totoc,parskip=half-,numbers=enddot}
+
+%--------------------------------------------------------
+
+%headers
+% \clearpairofpagestyles
+% \automark[chapter]{chapter}
+% \ihead{}\chead{}\ohead{\headmark}
+% \ifoot{}\cfoot{}\ofoot{\pagemark}
+
+%continuous page numbering
+\def\pagenumbering#1{\gdef\thepage{\csname @#1\endcsname \c@page}}
+
+%--------------------------------------------------------
+
+%typewriter font
+\DeclareTextFontCommand{\texttt}{\fontfamily{cmtt}\selectfont}
+\renewcommand\UrlFont{\fontfamily{cmtt}\selectfont}
+
+%--------------------------------------------------------
+
+%blocks & theorems
+
+%qed symbols
+\newcommand{\newqedsymbol}{\ensuremath{\color{ugentblue}\square}}
+\newcommand{\noqedsymbol}{\ensuremath{\mathrel{\ooalign{$\color{ugentblue}\square$\cr\hidewidth\raise.22ex\hbox{$\diagup\mkern-1.25mu$}\cr}}}}
+
+%proof environments
+\renewenvironment{proof}[1][\proofname]%
+	{\setlength\topsep{0pt}%
+		\setlength\partopsep{0pt}%
+		\let\qedsymbol\newqedsymbol%
+		\pushQED{\qed}%
+		\normalfont\trivlist\item[\hskip\labelsep\itshape\strut #1\@.]\ignorespaces}%
+	{\popQED\endtrivlist\@endpefalse}
+
+\newenvironment{noproof}[1][{\itshape Zonder bewijs}]%
+	{\setlength\topsep{0pt}%
+		\setlength\partopsep{0pt}%
+		\let\qedsymbol\noqedsymbol%
+		\pushQED{\qed}%
+		\normalfont\trivlist\item[\hskip\labelsep\itshape\strut #1\@.]\ignorespaces}%
+	{\popQED\endtrivlist\@endpefalse}
+
+%hack for bold optional theorem title
+\newtheoremstyle{definition}{0pt}{0pt}{}{}{\bfseries}{\@. }{ }{\thmname{#1}\thmnumber{\@ifnotempty{#1}{ }\@upn{#2}}\thmnote{{\bfseries\ (#3)}}}
+
+%apply style
+\theoremstyle{definition}
+\newtheorem{definition}{Definitie}[section]
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{proposition}[definition]{Propositie}
+\newtheorem{theorem}[definition]{Stelling}
+\newtheorem{corollary}[definition]{Gevolg}
+\newtheorem{remark}[definition]{Opmerking}
+
+%insert parskip before theorem environments
+%\begingroup\@for\theoremstyle:=definition\do{\expandafter\g@addto@macro\csname th@\theoremstyle\endcsname{\addtolength\thm@preskip\parskip}}\endgroup
+
+%--------------------------------------------------------
+
+%custom titlepage
+\newcommand\institute[1]{\newcommand\@institute{#1}}
+\newcommand\promotor[1]{\newcommand\@promotor{#1}}
+\newcommand\substuff[1]{\newcommand\@substuff{#1}}
+
+\newlength\ugentlogoheight
+\setlength\ugentlogoheight{56mm}
+\newlength\extraaccentheight
+\setlength\extraaccentheight{4mm}
+
+\tikzset{*|/.style={to path={(\tikztostart) -- (perpendicular cs: horizontal line through={(\tikztotarget)},vertical line through={(\tikztostart)}) \tikztonodes}}}
+\tikzset{*-/.style={to path={(\tikztostart) -- (perpendicular cs: vertical line through={(\tikztotarget)},horizontal line through={(\tikztostart)}) \tikztonodes}}}
+
+\renewcommand*{\maketitle}{
+	\thispagestyle{empty}
+	\newgeometry{left=50mm,right=24mm,top=24mm,bottom=24mm}
+	%accent lines left
+	\begin{tikzpicture}[overlay,remember picture,inner sep=0pt,outer sep=0pt]
+		%bounding box
+		\node[anchor=west,inner sep=0pt,outer sep=0pt,minimum width=25mm,minimum height={\textheight+2\extraaccentheight}] (accentlinesbox) at ([xshift=-25mm]current page text area.west) {};
+		%logo: 55mm x 40mm
+		\node[anchor=south west,inner sep=0pt,outer sep=0pt] (ugentlogo) at ([yshift={\ugentlogoheight+\extraaccentheight}]accentlinesbox.south west) {\includegraphics[width=55mm]{_logo_ugent.pdf}};
+		%blue lines
+		\draw[ugentblue,line width=.88mm]
+			(accentlinesbox.south west) ++ (10.75mm,0) to[*|] (ugentlogo.south)
+			(accentlinesbox.north west) ++ (10.75mm,0) to[*|] ([yshift=-5pt]ugentlogo.north)
+			(accentlinesbox.south west) ++ (12.5mm,0) to[*|] (ugentlogo.south)
+			(accentlinesbox.north west) ++ (12.5mm,0) to[*|] ([yshift=-5pt]ugentlogo.north) coordinate (X);
+		%yellow line
+		\draw[ugentyellow,line width=.88mm]
+			(accentlinesbox.south west) ++ (14.25mm,0) to[*|] (ugentlogo.south)
+			(accentlinesbox.north west) ++ (14.25mm,0) to[*|] ([yshift=-5pt]ugentlogo.north);
+		%wedge
+		\path[draw=white,fill=white,line width=4pt] ([xshift=-2.777mm]X) -- ([yshift=1mm]X) -- ([xshift=2.777mm]X) -- cycle;
+	\end{tikzpicture}
+	%content right
+	\bgroup\centering\Large
+		\@institute\vfill
+		{\bfseries\Huge\@title\par}
+		\bigskip{\huge\@author\par}
+		\vfill\@date\par
+		Promotor: \@promotor\par
+		\@substuff\par
+	\egroup
+\restoregeometry}
+
+%--------------------------------------------------------
+
+%\newlength\extrachapwidth
+%\setlength\extrachapwidth{4mm}
+
+%chapter style
+\newcommand{\chaplines}[2]{\begin{tikzpicture}[overlay,remember picture]
+	%number box
+	\node[anchor=north west,inner sep=0mm,outer sep=0mm] (nr) at ([xshift=3.2mm]current page text area.north west) {\fontsize{50}{50}\selectfont\color{ugentblue}\strut#1};
+	%coordinates
+	\coordinate (T) at ([xshift=2.4mm,yshift=5mm]nr.north east);
+%	\coordinate (L) at ([xshift=-\extrachapwidth]perpendicular cs: horizontal line through={(T)},vertical line through={(current page text area.north west)});
+	\coordinate (L) at (perpendicular cs: horizontal line through={(T)},vertical line through={(current page text area.north west)});
+	\coordinate (B) at ([xshift=10mm]nr.south east);
+	%yellow line
+	\draw[line width=.88mm,color=ugentyellow] ([yshift=-3.5mm]L) coordinate (L2) -- (intersection of T--B and L2--[xshift=40mm]L2);
+	%blue line
+	\draw[line width=.88mm,color=ugentblue] ([yshift=-1.75mm]L) coordinate (L1)-- (intersection of T--B and L1--[xshift=40mm]L1);
+	%blue broken line
+	\draw[line width=.88mm,color=ugentblue] (L) -- (T) -- (B) -- (perpendicular cs: vertical line through={(current page text area.east)},horizontal line through={(B)});
+	%text node
+	\node[anchor=west,text depth=0pt] at ([xshift=12.5mm]nr.east) {\huge\strut#2};
+\end{tikzpicture}}
+
+
+%KOMA-script version for headers
+\addtokomafont{disposition}{\rmfamily}
+
+\providecommand*\Ifstr{\ifstr}
+\renewcommand*{\chapterformat}{\thechapter}%\autodot?
+\renewcommand*\chapterlinesformat[3]{%
+	\Ifstr{#1}{chapter}{\chaplines{#2}{#3}}{\@hangfrom{#2}{#3}}%
+}
+
+%--------------------------------------------------------
+\makeatother

@@ -1,0 +1,101 @@
+\documentclass[14pt,oneside]{scrbook}
+
+\input{preamble}
+
+\usepackage[math]{blindtext}
+\usepackage{amsmath}
+\usepackage[math-style=upright]{unicode-math}
+\usepackage{caption}
+\usepackage{subcaption}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+    citecolor=black,
+}
+
+\usepackage{csquotes}
+\usepackage{scrlayer-scrpage}
+
+\ihead{}
+\chead{}
+\ohead[]{\headmark}
+\ifoot[]{}
+\cfoot[]{}
+\ofoot[\pagemark]{\pagemark}
+
+
+\usepackage{tikz-feynman}
+\tikzfeynmanset{compat=1.1.0}
+
+
+%--------------------------------------------------------
+
+\title{TTZ Cross Section Measurement}
+\author{\textsc{Vandenbroeck Jules}}
+\date{Academic Year 2022--2023}
+\institute{Ghent University\\Faculty of Sciences\\Masters Physics \& Astronomy}
+\promotor{professor Dobur}
+\substuff{}
+
+
+%--------------------------------------------------------
+
+\begin{document}
+
+\frontmatter
+
+%title page
+\newgeometry{top=20mm,bottom=30mm,left=15mm,right=15mm}
+\maketitle
+\restoregeometry
+
+\newpage
+\newpage
+%abstract
+\chapter{Abstract}
+\newpage
+%--------------------------------------------------------
+
+%table of contents
+\tableofcontents
+\listoffigures
+\listoftables
+\newpage
+%--------------------------------------------------------
+
+
+
+%--------------------------------------------------------
+
+\newpage
+%introduction
+\chapter{Introduction}
+
+\mainmatter
+%Fundamentals of Physics
+\input{Fundamentals/Introduction}
+\input{Fundamentals/QCD}
+%\input{Fundamentals/ElectroWeak}
+%\input{Fundamentals/BSM}
+
+%The CMS Experiment
+%\input{TheCMSExperiment/LHC}
+%\input{TheCMSExperiment/CMS}
+%\input{TheCMSExperiment/EventReconstruction}
+%\input{TheCMSExperiment/EventSimulation}
+%--------------------------------------------------------
+\backmatter
+
+%bibliography
+\nocite{*}
+% \bibliographystyle{alpha}
+% \bibliography{references}
+\printbibliography
+
+%...
+
+%--------------------------------------------------------
+
+\end{document}

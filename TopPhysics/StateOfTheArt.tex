@@ -1,0 +1,72 @@
+\begin{figure}
+\centering
+
+\begin{tikzpicture}
+    \begin{feynman}
+      \vertex[dot] (m) at (0, 0) {};
+      \vertex[dot] (n) at (2, 0) {};
+      \vertex (a) at (-1.5,1) {$q$};
+      \vertex (b) at ( -1.5,-1) {$\overline{q}$};
+      \vertex (c) at (3.5,1) {$t$};
+      \vertex (d) at (3.5,-1) {$\overline{t}$};
+        
+      \diagram* {
+        (a) 
+        -- [fermion] (m) 
+        -- [fermion] (b),
+        (m) 
+        -- [gluon] (n)
+        -- [fermion] (c),
+        (d)
+        -- [fermion] (n),
+      };
+    \end{feynman}
+\end{tikzpicture}
+\hspace*{1em}
+\begin{tikzpicture}
+    \begin{feynman}
+      \vertex[dot] (m) at (1, 1) {};
+      \vertex[dot] (n) at (1, -1) {};
+      \vertex (a) at (-1.5,1) {$g$};
+      \vertex (b) at ( -1.5,-1) {$g$};
+      \vertex (c) at (3.5,1) {$t$};
+      \vertex (d) at (3.5,-1) {$\overline{t}$};
+        
+      \diagram* {
+        (a) 
+        -- [gluon] (m) 
+        -- [gluon] (n),
+        (m) 
+        -- [fermion] (c),
+        (b)
+        -- [gluon] (n)
+        -- [fermion] (d),
+      };
+    \end{feynman}
+\end{tikzpicture}
+\caption{Feynman diagrams of dominating top quark pair production at proton proton collisions: (left) quark anti-quark annihilation process, (right) gluon gluon fusion process}
+\label{Fig:Topproduction}
+\end{figure}
+
+
+\section{Overview of top physics at LHC}
+25 years after the top quark discovery at Tevatron\cite{RevModPhys.69.137}, the particle remains a focal point of collider experiments in high-energy particle physics. The top quark is an anomaly with a measured mass of $m_t = 171.77 \pm 0.38$GeV\cite{CMS:2022kcl}, about 40 times larger than
+the mass of the second-heaviest known fermion. Its' immense mass makes it subject to a large coupling with the Higgs boson and to play a crucial role in electroweak loop corrections. In addition, the top quark has a decay width of $\Gamma_t=1.31$GeV larger than the QCD-scale of $\Lambda_{QCD} \approx 200$MeV, providing the top quark with a unique property. top quark decay to a W boson and b quark precedes any hadronisation of the top quark thus preserving properties of the top quark such as spin and charge. Measurements of top-quark properties (mass, spin, pair production cross section...) give the opportunity to test the limits of the SM, search for BSM physics and give valuable input in QCD corrections for event simulation.\\
+\\
+At the LHC, top quarks are primarily produced in top quark anti top quark pairs ($t\overline{t}$) by the strong interaction, the relevant Feynman diagrams are shown in Fig. \ref{Fig:Topproduction}. In $\sqrt{s}=13$TeV proton proton collisions at LHC, $t\overline{t}$ production is dominated by gluon-gluon fusion processes with only 10\% of the $t\overline{t}$ pairs produced via quark antiquark ($q\overline{q}$) annihilation. This is due to $t\overline{t}$ pair production requiring involved partons to have a center-of-mass energy of twice the top-quark mass which for $q\overline{q}$ annihilation means the rare presence of a high energy sea antiquark in the collision. The inclusive cross section of $t\overline{t}$ production has been measured repeatedly over detector generations\cite{2020,CMS:2022elr,2013} and measurements have been used as a benchmark to place constraints on parton distribution functions and fine tune QCD correction calculations. Associated top quark processes with a heavy boson are also present in pp collisions at the LHC at a lower cross section and are considered "rare processes". Examples of rare top quark processes are single top quark production in association with a W boson ($tW$), top quark pair production in association with an electroweak boson ($t\overline{t}Z$, and $t\overline{t}W$),and triple top quark and four top quark production ($ttt$, and $tttt$).\\
+\\
+A top quark almost exclusively decays to a W boson and b quark ($t\to Wb)$ and can be classified based on the W boson decay. The W boson can either decay to two light quarks ($W\to qq'$) or to a lepton and neutrino ($W\to l \nu_l$), the top quark decay channels are respectively the hadronic and leptonic decay. In the leptonic decay the lepton is expected to have large transverse moment due to the high top quark mass and is isolated from other particles in the process. The isolated lepton together with jet tagging algorithms to identify b quarks make for ideal properties to help identify events containing top quarks in top quark physics measurements. The decays of a $t\overline{t}$ pair for example can be divided by the top quark decay channels as follows.
+\begin{itemize}
+    \item \textbf{All-hadronic}: both top quarks decay hadronically with a final state of six jets in the detector, two of which originate from a b quark.
+    \item \textbf{semileptonic}: One hadronic top quark decay and one leptonic top quark decay with a finale state of one isolated high-energy lepton and four jets in the detector, two of which originate from a b quark.
+    \item \textbf{dileptonic}: both top quarks decay leptonically with a final state of two isolated high-energy leptons and two jets originating from a b quark.
+\end{itemize}
+LHC Run II with an approximate 140fb$^{-1}$ of data has placed forward a wide range of precision measurements of top quark related processes in several final states. The large number of recorded events has also made it possible to do precision measurements of interactions and processes previously not possible at the LHC. ... 
+rare processes of tt in association with a boson
+used for EFT interpretation to search for BSM physics
+
+
+\section{Top quark pair production in association with a Z boson}
+A measurement of top quark pair production in association with A Z boson ($t\overline{t}$Z) provides an opportunity to challenge the SM and search for BSM physics. In addition, this process is a significant background in measurements of rare SM processes such as $t\overline{t}H$, and $tttt$ production. 
+
+The inclusive cross section of $t\overline{t}Z$ production has been measured by both the ATLAS Collaboration and the CMS Collaboration using pp collisions at $\sqrt{s}=13$TeV with a total integrated luminosity of 138fb$^{-1}$.
